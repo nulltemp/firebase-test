@@ -25,15 +25,29 @@
         </a>
       </div>
     </div>
+    <button @click="doLogout">logout</button>
   </div>
 </template>
 
 <script>
 import Logo from '~/components/Logo.vue'
+import { mapActions } from 'vuex'
 
 export default {
   components: {
     Logo
+  },
+  methods: {
+    ...mapActions([
+      'logout'
+    ]),
+    async doLogout () {
+      try {
+        await this.logout()
+      } finally {
+        this.$router.push('/login')
+      }
+    }
   }
 }
 </script>
