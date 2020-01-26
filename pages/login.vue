@@ -1,7 +1,10 @@
 <template>
   <div>
     <div v-if="isLoading">loading</div>
-    <button v-else @click="googleLogin">Login in with Google</button>
+    <div v-else>
+      <button @click="doLogin('google')">Login in with Google</button>
+      <button @click="doLogin('github')">Login in with Github</button>
+    </div>
   </div>
 </template>
 
@@ -28,11 +31,15 @@ export default {
   },
   methods: {
     ...mapActions([
-      'login', 'setUser'
+      'googleLogin', 'githubLogin', 'setUser'
     ]),
-    async googleLogin () {
+    async doLogin (type) {
       this.isLoading = true
-      await this.login()
+      if (type === 'google') {
+        await this.googleLogin()
+      } else {
+        await this.githubLogin()
+      }
     }
   }
 }

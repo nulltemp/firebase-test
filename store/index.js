@@ -1,6 +1,7 @@
 import firebase from '@/plugins/firebase'
 
 const googleProvider = new firebase.auth.GoogleAuthProvider()
+const githubProvider = new firebase.auth.GithubAuthProvider();
 
 export const state = () => ({
   uid: null
@@ -13,8 +14,11 @@ export const getters = {
 }
 
 export const actions = {
-  async login () {
+  async googleLogin () {
     await firebase.auth().signInWithRedirect(googleProvider)
+  },
+  async githubLogin () {
+    await firebase.auth().signInWithRedirect(githubProvider)
   },
   async logout ({ commit }) {
     try {
