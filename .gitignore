@@ -91,3 +91,6 @@ sw.*
 
 .firebase/
 .firebaserc
+.env.dev
+functions/serviceAcount.json
+.env.production
